@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style type="text/css">
+			button, h1, input {
+				font-size:400%;
+			}
+			h1 { text-align:center; }
+			button {  align-content:center;  }
+		</style>
+		<title></title>
+	</head>
+	<body>
+		<element id="special"></element>
+		<button onclick="test(this)" align="center">click</button>
+		<script>
+			var btnpressed = false;
+			function test(its) {
+				const element = document.getElementById('special');
+				if (!btnpressed) {
+					btnpressed = true;
+					element.innerHTML = '<input type="text" id="inp"></input><br>';
+					its.textContent = 'continue';
+				}
+				else {
+					btnpressed = false;
+					var text = document.getElementById('inp').value;
+					element.innerHTML = `<h1 id="settle">You writed:${text}</h1><br>`;
+					its.textContent = 'click';
+				}
+			}
+		</script>
+	</body>
+</html>

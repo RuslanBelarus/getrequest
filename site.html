@@ -1,36 +1,80 @@
-<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style type="text/css">
-			button, h1, input {
-				font-size:400%;
-			}
-			h1 { text-align:center; }
-			button {  align-content:center;  }
-		</style>
-		<title></title>
-	</head>
-	<body>
-		<element id="special"></element>
-		<button onclick="test(this)" align="center">click</button>
-		<script>
-			var btnpressed = false;
-			function test(its) {
-				const element = document.getElementById('special');
-				if (!btnpressed) {
-					btnpressed = true;
-					element.innerHTML = '<input type="text" id="inp"></input><br>';
-					its.textContent = 'continue';
-				}
-				else {
-					btnpressed = false;
-					var text = document.getElementById('inp').value;
-					element.innerHTML = `<h1 id="settle">You writed:${text}</h1><br>`;
-					its.textContent = 'click';
-				}
-			}
-		</script>
-	</body>
+    <head>
+        <style>
+            * {font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;}
+            
+            .suffer {
+                box-shadow: 10px 10px 10% #000000;
+                font-size: 140%;
+                text-align: center;
+                align-items: center;
+                animation: levitation 7s infinite;
+            }
+            .particles {
+                font-size:200%;
+                animation: wawe 2s infinite ease-in-out;
+            }
+            .header {
+                background-color: pink;
+                border: 1px solid black;
+                max-width:450px;
+                margin: 0 auto;
+                border-radius: 100px;
+            }
+            .poem {
+                background-color:hotpink;
+                border-radius: 20px;
+                border: 1px solid black;
+                max-width:450px;
+                margin: 0 auto;
+            }
+            .date {
+                animation: scaling 5s infinite ease-in-out;
+                font-size:200%;
+                color: #fff;
+            }
+            @keyframes wawe {
+                0% { transform: rotate(0deg); }
+                10% { transform: rotate(14deg); }
+                20% { transform: rotate(-8deg); }
+                30% { transform: rotate(14deg); }
+                40% { transform: rotate(-4deg); }
+                50% { transform: rotate(10deg); }
+                60% { transform: rotate(0deg); }
+                100% { transform: rotate(0deg); }
+            }
+            @keyframes levitation {
+                0% { transform: translateY(-5px);}
+                50% { transform: translateY(5px);}
+                100% { transform: translateY(-5px);}
+            }
+            @keyframes scaling {
+                0% {transform: scale(90%);}
+                50% {transform: scale(100%);}
+                100% {transform: scale(90%);}
+            }
+        </style>
+    </head>
+    <body background="bg.jpg">
+        <div class="suffer">
+            <div class="particles">🎂✨🎈</div>
+            <div class="header">
+                <p>🌷 Для любимой мамы 🌷</p>
+            </div>
+            <div class="poem">
+                <p>Поздравляю с днем рожденья!</p>
+                <p>Пусть будет жизнь полна веселья,</p>
+                <p>Не будет грусти и хлопот,</p>
+                <p>А только счастье круглый год!</p>
+                <br>
+                <p>Желаю творческих успехов,</p>
+                <p>Прекрасных дней, улыбок, смеха.</p>
+                <p>Любви, душевного тепла,</p>
+                <p>Как сказка, чтобы жизнь была!</p>
+            </div>
+            <div class="date">
+                🥳 04.02.1978 🥳
+            </div>
+        </div>
+    </body>
 </html>

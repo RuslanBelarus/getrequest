@@ -1,5 +1,22 @@
 import socket
 
+class HttpWebBrowserKit:
+
+    def __init__(self): pass
+
+    @staticmethod
+    def Initing(handler, func, *args):
+        if handler.legal: return [func, args]
+    
+    @staticmethod
+    def Protocol(collection):
+        outp = None
+        try:
+            for proto in collection:
+                outp = proto[0](*proto[1]) if proto is not None else None
+        except KeyError: pass
+        return outp
+    
 class HttpWebBrowserHander:
 
     def __init__(self, ip : str = 'localhost', port : int = 8080):
@@ -7,22 +24,23 @@ class HttpWebBrowserHander:
         self.sock.bind((ip, port))
         self.sock.listen(5)
 
+        self.legal = 0
+        self.iteration = 0
+
         print(f'Server started on http://{ip}:{port}')
     
     def MainHandler(self, user, addres, data, legal):
         pass
 
-    def __call__(self, *args, **kwds):
-
-        iteration = 0
+    def HttpOpen(self, *args, **kwds):
 
         while True:
-            iteration += 1
+            self.iteration += 1
 
-            legal = iteration % 2 == 1
+            self.legal = self.iteration % 2 == 1
             user, addres = self.sock.accept()
-            data = HttpWebBrowserHander.HttpGet(user.recv(4096).decode())
-            self.MainHandler(user, addres, data, legal)
+            data = user.recv(4096).decode()
+            self.MainHandler(user, addres, data, self.legal)
             user.close()
     
     @staticmethod
@@ -42,3 +60,13 @@ Connection: close
             return datas
         except:
             return {}
+    
+    @staticmethod
+    def HttpStatus(data : str) -> str:
+        return data.split('\n')[0].replace('POST /', '').replace(' HTTP/1.1', '').replace('\r', '')
+    
+    @staticmethod
+    def HtmlFormating(html : str, *args) -> str:
+        for i, val in enumerate(args):
+            html = html.replace(f'${i}', val)
+        return html
